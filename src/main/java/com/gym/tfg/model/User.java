@@ -1,7 +1,14 @@
 package com.gym.tfg.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="users")
 public class User {
 	
+	@Id
 	private String email;
 	private String password;
 	private String name;
@@ -15,6 +22,7 @@ public class User {
 		super();
 	}
 	
+	//constructor con datos estrictamente necesarios
 	public User(String email, String password, String name, String surname, int age) {
 		super();
 		this.email = email;
@@ -76,6 +84,12 @@ public class User {
 	}
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", password=" + password + ", name=" + name + ", surname=" + surname + ", age="
+				+ age + ", weight=" + weight + ", gender=" + gender + "]";
 	}
 	
 	

@@ -2,10 +2,31 @@
 <html xmlns:th="http://www.thyneleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>Sign up</title>
 
 </head>
 	<body>
-	<h1>Sign up page</h1>
+		<form th:action="@{insertUser}" th:object="${userx}">
+			<span>Email</span>
+			<input type="text" th:field="*{email}" required/><br>
+			<span>Password</span>
+			<input type="password" th:field="*{password}" required/><br>
+			<span>Name</span>
+			<input type="text" th:field="*{name}" required/><br>
+			<span>Surname</span>
+			<input type="text" th:field="*{surname}" required/><br>
+			<span>Age</span>
+			<input type="number" th:field="*{age}" required/><br>
+			<span>Weight</span>
+			<input type="number" th:field="*{weight}" step="0.01"/><br>
+			<span>Gender</span>
+			<select th:field="*{gender}">
+			    <option value="MALE">Male</option>
+			    <option value="FEMALE">Female</option>
+			    <option value="OTHER">Other</option>
+			</select><br>
+			
+			<input type="submit" value="Register now!"/>
+		</form>
 	</body>
 </html>
