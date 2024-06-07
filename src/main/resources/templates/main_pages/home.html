@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+
+</head>
+	<body>
+	    <h1>Home</h1>
+	    <p>Welcome, <span th:text="${session.currentuser.name}"></span>!</p>
+	    <p>Email: <span th:text="${session.currentuser.email}"></span></p>
+	    
+	</body>
+</html>

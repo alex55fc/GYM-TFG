@@ -6,7 +6,7 @@
 
 </head>
 	<body>
-		<form th:action="@{insertUser}" th:object="${userx}">
+		<form th:action="@{registerPage/insertUser}" th:object="${userx}" method=post>
 			<span>Email</span>
 			<input type="text" th:field="*{email}" required/><br>
 			<span>Password</span>
