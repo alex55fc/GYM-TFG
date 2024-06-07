@@ -1,6 +1,8 @@
 package com.gym.tfg.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -15,6 +17,7 @@ public class User {
 	private String surname;
 	private int age;
 	private double weight;
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
 	

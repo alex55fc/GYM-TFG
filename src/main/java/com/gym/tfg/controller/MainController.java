@@ -34,6 +34,7 @@ public class MainController {
 	@GetMapping("/insertUser")
 	public String insertUser(User userToInsert, Model model) {
 		System.out.println(userToInsert.toString());
+		service.insertNewUser(userToInsert);
 		return "index";
 	}
 }
