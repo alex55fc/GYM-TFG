@@ -10,5 +10,8 @@
 	    <p>Welcome, <span th:text="${session.currentuser.name}"></span>!</p>
 	    <p>Email: <span th:text="${session.currentuser.email}"></span></p>
 	    
+   		<form th:action="@{/updateSubscriptionPage}">
+			<input type="submit" value="Update subscription"/>
+		</form>
 	</body>
 </html>

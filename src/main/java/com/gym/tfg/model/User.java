@@ -1,9 +1,13 @@
 package com.gym.tfg.model;
 
+import com.gym.tfg.model.subscription.Subscription;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +24,9 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
+	@ManyToOne
+	@JoinColumn(name="subscription_id", nullable=true)
+	private Subscription subscription;
 	
 	public User() {
 		super();
@@ -44,6 +51,7 @@ public class User {
 		this.age = age;
 		this.weight = weight;
 		this.gender = gender;
+		this.subscription = null;
 	}
 
 	public String getEmail() {
@@ -87,6 +95,14 @@ public class User {
 	}
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public Subscription getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
 	}
 
 	@Override

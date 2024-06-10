@@ -1,10 +1,15 @@
 package com.gym.tfg.model.subscription;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("PREMIUM")
 public class PremiumSubscription extends Subscription {
 
 	private static final double PREMIUM_MONTHLY_PRICE = 40.00;
 
-	public PremiumSubscription(String subscriptionName, double monthlyPrice) {
+	public PremiumSubscription() {
 		super("PremiumSubscription", PREMIUM_MONTHLY_PRICE);
 		// TODO Auto-generated constructor stub
 	}

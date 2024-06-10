@@ -9,6 +9,7 @@ import com.gym.tfg.model.User;
 @Repository
 public class MainRepository {
 	
+
 	@Autowired
 	JdbcTemplate jdbc;
 	
@@ -17,4 +18,6 @@ public class MainRepository {
 				user.getEmail(), user.getPassword(),user.getName(),user.getSurname(), user.getAge(), user.getWeight(), user.getGender().toString());
 		
 	}
+	
+
 }
