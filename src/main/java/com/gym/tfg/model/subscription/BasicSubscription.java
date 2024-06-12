@@ -15,6 +15,17 @@ public class BasicSubscription extends Subscription {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public BasicSubscription(int id) {
+		super("BasicSubscription", BASIC_MONTHLY_PRICE);
+		this.id = id;
+	}
+	
+	@Override
+	public String toString() {
+		return "BasicSubscription [id=" + id + ", subscriptionName=" + subscriptionName + ", monthlyPrice="
+				+ monthlyPrice + "]";
+	}
+
 	@Override
 	public double calculateFirstMonth() {
 		return BASIC_MONTHLY_PRICE + ENROLLMENT;

@@ -24,5 +24,10 @@ public class MainRepository {
 		
 	}
 	
+	public void updateUserSubscriptionToBasic(User user) {
+		jdbc.update("UPDATE subscriptions SET subscription_name = ?, monthly_price = ?, subscription_type = ? WHERE id = ? ",
+				user.getSubscription().getSubscriptionName(), user.getSubscription().getMonthlyPrice(), "BASIC", user.getSubscription().getId());
+			}
+	
 
 }

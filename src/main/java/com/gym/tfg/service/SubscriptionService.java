@@ -29,6 +29,10 @@ public class SubscriptionService {
 	public void upgradeUserSubscriptionToPremium(User user) {
 		repository.updateUserSubscriptionToPremium(user);
 	}
+	
+	public void downgradeUserSubscriptionToBasic(User user) {
+		repository.updateUserSubscriptionToBasic(user);
+	}
 
 	
 	

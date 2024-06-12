@@ -7,6 +7,25 @@
 <body>
 	<h1>Update your actual subscription </h1>
     <p>Your subscription premium: <span th:text="${session.currentuser.subscription.subscriptionName}"></span></p>
-	
+   
+    <h2>Premium Subscription</h2>
+    <ul>
+        <li>Priority access to classes, making it easier to book popular classes.</li>
+        <li>Includes sessions with professional trainers, providing personalized training and guidance.</li>
+        <li>Higher price compared to basic subscription, but justifies cost for those valuing personalized attention.</li>
+    </ul>
+    
+    <h2>Basic Subscription</h2>
+    <ul>
+        <li>Access to all facilities during all operating hours.</li>
+        <li>Access to all classes offered by the gym.</li>
+        <li>Lower price compared to premium subscription.</li>
+    </ul>
+     
+    <!-- Form to confirm subscription change -->
+    <form th:action="@{/changeUserSubscriptionToBasic}" method="post" onsubmit="return confirm('Are you sure you want to change to Basic Subscription?');">
+        <input type="hidden" name="subscriptionType" value="BasicSubscription"/>
+        <input type="submit" value="Change to Basic Subscription"/>
+    </form>
 </body>
 </html>

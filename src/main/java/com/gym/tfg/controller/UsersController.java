@@ -23,7 +23,7 @@ public class UsersController {
 
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping("/userSubscriptionPage") 
 	public String redirectUserSusbcriptionPage(HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
@@ -67,7 +67,7 @@ public class UsersController {
 		}
 		return "redirect:/home";
 	}
-	
+
 	/*
 	 * obtenemos el objeto subscription asociado al currentUser 
 	 * creamos el una subscripcion Premium con el id de la subscription del currentUser
@@ -79,21 +79,49 @@ public class UsersController {
 	@PostMapping("/changeUserSubscriptionToPremium")
 	public String changeUserSubscriptionToPremium(@RequestParam("subscriptionType") String subscriptionType, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
-		
+
 		if(currentUser != null && currentUser.getSubscription() != null) {
 			Subscription sub = currentUser.getSubscription();
 			Subscription premiumSubscription = new PremiumSubscription(sub.getId());
-			
+
 			currentUser.setSubscription(premiumSubscription);
 			subService.upgradeUserSubscriptionToPremium(currentUser);
 			userService.updateUser(currentUser);
-			
+
 			session.setAttribute("currentuser", currentUser);
 			System.out.println(currentUser.toString());
 			System.out.println(currentUser.getSubscription().toString());
 
 		}
 		return "redirect:/home";
+	}
+	
+	/*
+	 * obtenemos el objeto subscription asociado al currentUser 
+	 * creamos el una subscripcion Basic con el id de la subscription del currentUser
+	 * cambiamos el objeto subscription del user por el nuevo subscription basic
+	 * usar el método JDBC para actualizar la suscripción en la base de datos
+	 * con un metodo CRUD actualizamos el usurio en la db
+	 * actualizamos la sesion del currentUser
+	 */
+	@PostMapping("/changeUserSubscriptionToBasic")
+	public String changeUserSubscriptionToBasic(@RequestParam("subscriptionType") String subscriptionType, HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentuser");
+
+		if(currentUser != null && currentUser.getSubscription() != null) {
+			Subscription sub = currentUser.getSubscription();
+			Subscription basicSubscription = new BasicSubscription(sub.getId());
+			
+			currentUser.setSubscription(basicSubscription);
+			subService.downgradeUserSubscriptionToBasic(currentUser);
+			userService.updateUser(currentUser);
+			
+			session.setAttribute("currentuser", currentUser);
+			System.out.println(currentUser.toString());
+			System.out.println(currentUser.getSubscription().toString());
+		}
+		return "redirect:/home";
+
 	}
 
 }
