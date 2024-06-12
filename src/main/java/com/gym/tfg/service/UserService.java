@@ -20,8 +20,14 @@ public class UserService {
 		repository.insertNewUserRepo(user);
 	}
 	
-	public void updateUserSubscription(User user) {
+	public void createUserSubscription(User user) {
+		userDao.save(user);
+	}
+	public void updateUser(User user) {
 		userDao.save(user);
 	}
 	
+
+	
+
 }

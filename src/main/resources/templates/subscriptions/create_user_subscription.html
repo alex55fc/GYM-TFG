@@ -9,23 +9,18 @@
 	    <p>Welcome, <span th:text="${session.currentuser.name}"></span>!</p>
 	    <p>Email: <span th:text="${session.currentuser.email}"></span></p>
 	    
-	    <div th:if="${session.currentuser.subscription == null}">
-           No tienes una suscripción.
+	    <div>
+           No tienes una sus cripción.
            
-         		<form th:action="@{/updateSubscription}" method=post>
+         		<form th:action="@{/createUserSusbcription}" method=post>
 				<select name="subscriptionType">
 				    <option value="BasicSubscription">Basic subscription</option>
 				    <option value="PremiumSubscription">Premium subscription</option>
 				</select><br>
 			
-				<input type="submit" value="Register now!"/>
+				<input type="submit" value="New Subscription!"/>
 			</form>
       </div>
-      <div>
-      
-	        <span th:if="${session.currentuser.subscription != null}">
-	            Tu subscripción actual es: <span th:text="${session.currentuser.subscription.subscriptionName}"></span>
-	        </span>
-	    </div>	    
+      	    
 </body>
 </html>

@@ -18,6 +18,11 @@ public class MainRepository {
 				user.getEmail(), user.getPassword(),user.getName(),user.getSurname(), user.getAge(), user.getWeight(), user.getGender().toString());
 		
 	}
+	public void updateUserSubscriptionToPremium(User user) {
+		jdbc.update("UPDATE subscriptions SET subscription_name = ?, monthly_price = ?, subscription_type = ? WHERE id = ? ",
+				user.getSubscription().getSubscriptionName(), user.getSubscription().getMonthlyPrice(), "PREMIUM", user.getSubscription().getId());
+		
+	}
 	
 
 }

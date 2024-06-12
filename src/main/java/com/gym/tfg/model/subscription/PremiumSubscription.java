@@ -14,6 +14,11 @@ public class PremiumSubscription extends Subscription {
 		// TODO Auto-generated constructor stub
 	}
 
+	public PremiumSubscription(int id) {
+		super("PremiumSubscription", PREMIUM_MONTHLY_PRICE);
+		this.id = id;
+	}
+
 	@Override
 	public double calculateFirstMonth() {
 		// TODO Auto-generated method stub
@@ -24,6 +29,12 @@ public class PremiumSubscription extends Subscription {
 	public double calculateMonthlyPrice() {
 		// TODO Auto-generated method stub
 		return PREMIUM_MONTHLY_PRICE;
+	}
+
+	@Override
+	public String toString() {
+		return "PremiumSubscription [id=" + id + ", subscriptionName=" + subscriptionName + ", monthlyPrice="
+				+ monthlyPrice + "]";
 	}
 
 	
