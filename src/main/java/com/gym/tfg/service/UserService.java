@@ -27,6 +27,11 @@ public class UserService {
 		userDao.save(user);
 	}
 	
+	public boolean deleteUserSusbcription(User user) {
+		return repository.deleteUserSusbcription(user);
+	}
+	
+
 
 	
 

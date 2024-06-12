@@ -8,26 +8,32 @@ import com.gym.tfg.model.User;
 
 @Repository
 public class MainRepository {
-	
+
 
 	@Autowired
 	JdbcTemplate jdbc;
-	
+
 	public void insertNewUserRepo(User user) {
 		jdbc.update("INSERT INTO users(email, password, name, surname, age, weight, gender) VALUES (?,?,?,?,?,?,?);",
 				user.getEmail(), user.getPassword(),user.getName(),user.getSurname(), user.getAge(), user.getWeight(), user.getGender().toString());
-		
+
 	}
 	public void updateUserSubscriptionToPremium(User user) {
 		jdbc.update("UPDATE subscriptions SET subscription_name = ?, monthly_price = ?, subscription_type = ? WHERE id = ? ",
 				user.getSubscription().getSubscriptionName(), user.getSubscription().getMonthlyPrice(), "PREMIUM", user.getSubscription().getId());
-		
+
 	}
-	
+
 	public void updateUserSubscriptionToBasic(User user) {
 		jdbc.update("UPDATE subscriptions SET subscription_name = ?, monthly_price = ?, subscription_type = ? WHERE id = ? ",
 				user.getSubscription().getSubscriptionName(), user.getSubscription().getMonthlyPrice(), "BASIC", user.getSubscription().getId());
-			}
+	}
 	
+	public boolean deleteUserSusbcription(User user) {
+		int rowsAffected = jdbc.update("UPDATE users SET subscription_id = NULL WHERE email = ? ",
+				user.getEmail());
+		return rowsAffected > 0;
+	}
+
 
 }

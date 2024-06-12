@@ -27,7 +27,10 @@
         <input type="hidden" name="subscriptionType" value="PremiumSubscription"/>
         <input type="submit" value="Change to Premium Subscription"/>
     </form>
-     
-	
+    
+     <!-- Form to delte subscription -->
+    <form th:action="@{/deleteUserSubscription}" method="post" onsubmit="return confirm('Are you sure you want to finish your subscription?');">
+        <input type="submit" value="Finish my subscription"/>
+    </form>
 </body>
 </html>

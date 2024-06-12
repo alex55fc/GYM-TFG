@@ -95,7 +95,7 @@ public class UsersController {
 		}
 		return "redirect:/home";
 	}
-	
+
 	/*
 	 * obtenemos el objeto subscription asociado al currentUser 
 	 * creamos el una subscripcion Basic con el id de la subscription del currentUser
@@ -111,11 +111,11 @@ public class UsersController {
 		if(currentUser != null && currentUser.getSubscription() != null) {
 			Subscription sub = currentUser.getSubscription();
 			Subscription basicSubscription = new BasicSubscription(sub.getId());
-			
+
 			currentUser.setSubscription(basicSubscription);
 			subService.downgradeUserSubscriptionToBasic(currentUser);
 			userService.updateUser(currentUser);
-			
+
 			session.setAttribute("currentuser", currentUser);
 			System.out.println(currentUser.toString());
 			System.out.println(currentUser.getSubscription().toString());
@@ -123,5 +123,44 @@ public class UsersController {
 		return "redirect:/home";
 
 	}
+
+	/*
+	 * obtenemos el currentUser
+	 * en db establecemos null nuestro subscription del usuer 
+	 * 
+	 * hacecmos null la subscription del objeto 
+	 * actualizamos la session, devolvemos home 
+	 */
+	@PostMapping("/deleteUserSubscription")
+	public String deleteUserSubscription(HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentuser");
+
+		if(currentUser != null && currentUser.getSubscription() != null) {
+			if(userService.deleteUserSusbcription(currentUser)) {
+				
+				System.out.println("Se elimino la subscripcion del usuario ");
+				subService.deleteSubscriptionFromUser(currentUser);
+				
+				if(subService.findSubscription(currentUser)) {
+					System.out.println("Se elimino la subscripcion asociada al usuario ");
+					
+					currentUser.setSubscription(null);					
+					session.setAttribute("currentuser", currentUser);
+
+					System.out.println(currentUser.toString());
+				}
+				else {
+					System.out.println("Error al eliminar la suscripcion asociada al usuario");
+				}
+			}
+			else {
+				System.out.println("Error al eliminar la suscripcion del usuario");
+			}
+			
+		}
+		return "redirect:/home";
+
+	}
+
 
 }
