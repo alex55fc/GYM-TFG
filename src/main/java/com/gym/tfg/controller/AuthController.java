@@ -34,9 +34,21 @@ public class AuthController {
 		System.out.println(userToInsert.toString());
 		userService.insertNewUser(userToInsert);
 		
-		//Almacena el usuario en la sesion
+		//Store the user in the session
 		session.setAttribute("currentuser", userToInsert);
 		
 		return "main_pages/home";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+	    if (session != null) {
+	        // Invalidate the session and remove the user's information
+	        session.invalidate();
+	        System.out.println("User has logged out.");
+
+	    }
+	    return "redirect:/";
+
 	}
 }
