@@ -32,6 +32,14 @@ public class AuthController {
 	
 	@PostMapping("/registerPage/insertUser")
 	public String insertUser(User userToInsert, HttpSession session, Model model) {
+		
+		if(!emailIsValid(userToInsert.getEmail())) {
+			System.out.println(" 1. The email must not have leading or trailing whitespaces.\r\n"
+					+ " 2. The email must not contain spaces.\r\n");
+			model.addAttribute("userx", userToInsert); 
+			return "auth/register";
+		}
+		
 		userParamsToLowerCase(userToInsert);
 		cleanUserSpaces(userToInsert);
 		
@@ -105,7 +113,16 @@ public class AuthController {
 	    return "redirect:/";
 
 	}
-	
+	private boolean emailIsValid(String email) {
+        if (!email.trim().equals(email)) {
+            return false;
+        }
+
+        if (email.contains(" ")) {
+            return false;
+        }
+        return true;
+	}
 	private void userParamsToLowerCase(User user) {
 		user.setEmail(user.getEmail().toLowerCase());
 		user.setName(user.getName().toLowerCase());
@@ -114,12 +131,6 @@ public class AuthController {
 	}
     private void cleanUserSpaces(User user) {
     	
-        String email = user.getEmail().trim();
-        while (email.contains("  ")) {
-            email = email.replace("  ", " ");
-        }
-        user.setEmail(email);
-
         String name = user.getName().trim();
         while (name.contains("  ")) {
             name = name.replace("  ", " ");
