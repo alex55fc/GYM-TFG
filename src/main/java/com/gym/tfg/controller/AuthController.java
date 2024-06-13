@@ -64,6 +64,36 @@ public class AuthController {
 		return "main_pages/home";
 	}
 	
+	@PostMapping("/loginPage/loginUser")
+	public String loginUser(User userToLog, HttpSession session , Model model) {
+		
+		// Verify email exists
+		if(userService.isUserWithEmailExists(userToLog.getEmail())) {
+			if(userService.isPasswordMatchingEmail(userToLog)) {
+				
+				userToLog = userService.getUserFromDatabaseFromDB(userToLog.getEmail());
+				System.out.println(userToLog.toString());
+				
+				session.setAttribute("currentuser", userToLog);
+				
+				return"redirect:/home";
+			}
+			else {
+				System.out.println("The password does not match the email\r\n"
+						+ "Remember no leading, intermediate, or trailing whitespace in the email or password.");
+				model.addAttribute("userx", userToLog); 
+				return "auth/login";
+			}
+		}
+		else {
+			System.out.println("Email not registred in DB\r\n"
+					+ "Remember no leading, intermediate, or trailing whitespace in the email or password.");
+			model.addAttribute("userx", userToLog); 
+			return "auth/login";
+		}
+		
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 	    if (session != null) {

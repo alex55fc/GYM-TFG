@@ -7,5 +7,12 @@
 </head>
 	<body>
 	<h1>Login page</h1>
+		<form th:action="@{/loginPage/loginUser}" th:object="${userx}" method=post>
+			<span>Email</span>
+			<input type="text" th:field="*{email}" required/><br>
+			<span>Password</span>
+			<input type="password" th:field="*{password}" required/><br>
+			<input type="submit" value="Login"/>
+		</form>
 	</body>
 </html>

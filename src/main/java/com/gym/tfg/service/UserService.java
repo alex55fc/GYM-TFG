@@ -30,10 +30,21 @@ public class UserService {
 	public boolean deleteUserSusbcription(User user) {
 		return repository.deleteUserSusbcription(user);
 	}
+	public User getUserFromDatabaseFromDB(String email) {
+		return userDao.findById(email).orElse(null);
+	}
 	
 	// User verification methods
 	public boolean isUserWithEmailExists(String email) {
 		return userDao.findById(email).orElse(null) != null;
+	}
+	
+	public boolean isPasswordMatchingEmail(User user) {
+		User userAux = userDao.findById(user.getEmail()).orElse(null);
+		if(user.getPassword().equals(userAux.getPassword())) {
+			return true;
+		}
+		return false;
 	}
 	
 
