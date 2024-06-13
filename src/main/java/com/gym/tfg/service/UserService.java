@@ -31,8 +31,10 @@ public class UserService {
 		return repository.deleteUserSusbcription(user);
 	}
 	
-
-
+	// User verification methods
+	public boolean isUserWithEmailExists(String email) {
+		return userDao.findById(email).orElse(null) != null;
+	}
 	
 
 }
