@@ -10,6 +10,7 @@ public class Constants {
 	public static final int MINIMUN_AGE = 16;
 	public static final int MAXIMUN_AGE = 100;
 	
+	// Future implementation for more secure passwords
 	public static final String SPECIAL_PASSWORD_CHARACTERS = "@#$%&*!?+-_~=.";
 
 }
