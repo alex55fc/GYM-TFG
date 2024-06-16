@@ -35,6 +35,12 @@ public class UserService {
 	}
 	
 	// User verification methods
+	/*
+	 * Aquí se está usando el método orElse(null) que retorna el valor contenido en el Optional si está
+	 *  presente, o null si no lo está. Luego, se compara ese valor con null. Porque si 
+	 *  el Optional está vacío, orElse(null) retornará null, y si no está vacío, retornará el valor contenido 
+	 *  en el Optional.
+	 */
 	public boolean isUserWithEmailExists(String email) {
 		return userDao.findById(email).orElse(null) != null;
 	}
