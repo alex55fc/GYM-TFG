@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="users")
 public class User {
-	
+
 	@Id
 	private String email;
 	private String password;
@@ -23,15 +23,17 @@ public class User {
 	private double weight;
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
-	
+
 	@ManyToOne
 	@JoinColumn(name="subscription_id", nullable=true)
 	private Subscription subscription;
-	
+
+
+
 	public User() {
 		super();
 	}
-	
+
 	//constructor con datos estrictamente necesarios
 	public User(String email, String password, String name, String surname, int age) {
 		super();
@@ -110,6 +112,6 @@ public class User {
 		return "User [email=" + email + ", password=" + password + ", name=" + name + ", surname=" + surname + ", age="
 				+ age + ", weight=" + weight + ", gender=" + gender + "]";
 	}
-	
-	
+
+
 }

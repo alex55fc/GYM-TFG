@@ -18,4 +18,19 @@ CREATE TABLE IF NOT EXISTS users (
     subscription_id INT,
     FOREIGN KEY (subscription_id) REFERENCES subscriptions(id)
 );
-
+--Tabla para las Clases del Gimnasio
+CREATE TABLE IF NOT EXISTS gym_classes (
+    gym_class_id INT NOT NULL PRIMARY KEY,
+    name_class VARCHAR(255) NOT NULL,
+    current_capacity INT NOT NULL,
+    total_capacity INT NOT NULL,
+    weekly_day VARCHAR(255) NOT NULL
+);
+-- Tabla intermedia para asignar usuarios a clases de gimnasio
+CREATE TABLE IF NOT EXISTS user_gymclass (
+    user_email VARCHAR(255) NOT NULL,
+    gym_class_id INT NOT NULL,
+    PRIMARY KEY (user_email, gym_class_id),
+    FOREIGN KEY (user_email) REFERENCES users(email),
+    FOREIGN KEY (gym_class_id) REFERENCES gym_classes(gym_class_id)
+);
