@@ -1,10 +1,14 @@
 package com.gym.tfg.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.gym.tfg.model.User;
+import com.gym.tfg.model.dto.UserGymClassDto;
+import com.gym.tfg.model.dto.UserGymClassDtoRowMapper;
 
 @Repository
 public class MainRepository {
@@ -57,6 +61,10 @@ public class MainRepository {
 	}
 	public void decrementGymClassCapacityCurrent(int gymClassId) {
 		jdbc.update("UPDATE gym_classes SET current_capacity = current_capacity - 1 WHERE gym_class_id = ?", gymClassId);
+	}
+	
+	public List<UserGymClassDto> findAllUserGymClass(String email){
+		return jdbc.query("SELECT * FROM user_gymclass WHERE user_email = ?", new UserGymClassDtoRowMapper(), email);
 	}
 
 }

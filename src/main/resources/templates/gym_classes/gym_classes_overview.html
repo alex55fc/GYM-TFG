@@ -6,7 +6,27 @@
 </head>
 <body>
 	<h1>This is the gym classes</h1>
+	
+    <div th:if="${#lists.isEmpty(listUserGymClass)}">
+        <p>The user has no assigned gym classes.</p>
+    </div>
 
+    <div th:unless="${#lists.isEmpty(listUserGymClass)}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Email User</th>
+                    <th>Gym Class ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="userGymClass : ${listUserGymClass}">
+                    <td th:text="${userGymClass.emailUser}"></td>
+                    <td th:text="${userGymClass.gymClassId}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 	<div>
     	<form th:action="@{/joinSelectedGymClass}" method="post">
 	        <input type="hidden" name="gym_class_id" value="1"/>
@@ -50,7 +70,9 @@
 	    </form>
 	</div>
 
-    
+   	<form th:action="@{/home}">
+		<input type="submit" value="Go home"/>
+	</form>
 
     
 

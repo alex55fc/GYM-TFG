@@ -1,9 +1,12 @@
 package com.gym.tfg.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gym.tfg.dao.GymClassDao;
+import com.gym.tfg.model.dto.UserGymClassDto;
 import com.gym.tfg.repository.MainRepository;
 
 @Service
@@ -29,5 +32,9 @@ public class UserGymClassService {
 	}
 	public void decrementUserGymClass(int gymClassId) {
 		repository.decrementGymClassCapacityCurrent(gymClassId);
+	}
+	
+	public List<UserGymClassDto> listAllUserGymClasses(String userEmail) {
+		return repository.findAllUserGymClass(userEmail);
 	}
 }
