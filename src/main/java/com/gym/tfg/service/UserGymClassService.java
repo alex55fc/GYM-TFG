@@ -24,4 +24,10 @@ public class UserGymClassService {
 		repository.insertIntoUserGymClass(userEmail, gymClassId);
 	}
 	
+	public boolean deleteUserGymClass(String userEmail, int gymClassId) {
+		return repository.deleteUserGymClass(userEmail, gymClassId);
+	}
+	public void decrementUserGymClass(int gymClassId) {
+		repository.decrementGymClassCapacityCurrent(gymClassId);
+	}
 }

@@ -7,25 +7,53 @@
 <body>
 	<h1>This is the gym classes</h1>
 
-    <form th:action="@{/joinSelectedGymClass}" method="post">
-        <input type="hidden" name="gym_class_id" value="1"/>
-        <input type="submit" value="Join Yoga"/>
-    </form>
+	<div>
+    	<form th:action="@{/joinSelectedGymClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="1"/>
+	        <input type="submit" value="Join Yoga"/>
+		</form>
+	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="1"/>
+	        <input type="submit" value="Out of Yoga"/>
+	    </form>
+	</div>
+	
+	<div>
+	    <form th:action="@{/joinSelectedGymClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="2"/>
+	        <input type="submit" value="Join Pilates"/>
+	    </form>
+	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="2"/>
+	        <input type="submit" value="Out of Pilates"/>
+	    </form>
+	</div>
+	
+	<div>
+	    <form th:action="@{/joinSelectedGymClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="3"/>
+	        <input type="submit" value="Join BodyPump"/>
+	    </form>
+	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="3"/>
+	        <input type="submit" value="Out of BodyPump"/>
+	    </form>
+	</div>
+	<div>
+	    <form th:action="@{/joinSelectedGymClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="4"/>
+	        <input type="submit" value="Join Spinning"/>
+	    </form>
+   	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
+	        <input type="hidden" name="gym_class_id" value="4"/>
+	        <input type="submit" value="Out of Spinning"/>
+	    </form>
+	</div>
+
     
-    <form th:action="@{/joinSelectedGymClass}" method="post">
-        <input type="hidden" name="gym_class_id" value="2"/>
-        <input type="submit" value="Join Pilates"/>
-    </form>
+
     
-    <form th:action="@{/joinSelectedGymClass}" method="post">
-        <input type="hidden" name="gym_class_id" value="3"/>
-        <input type="submit" value="Join BodyPump"/>
-    </form>
-    
-    <form th:action="@{/joinSelectedGymClass}" method="post">
-        <input type="hidden" name="gym_class_id" value="4"/>
-        <input type="submit" value="Join Spinning"/>
-    </form>
+
     
 </body>
 </html>

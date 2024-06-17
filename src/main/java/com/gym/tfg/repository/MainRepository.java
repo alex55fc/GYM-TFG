@@ -50,6 +50,13 @@ public class MainRepository {
 	public void incrementGymClassCapacityCurrent(int gymClassId) {
 		jdbc.update("UPDATE gym_classes SET current_capacity = current_capacity + 1 WHERE gym_class_id = ?", gymClassId);
 	}
-
+	
+	public boolean deleteUserGymClass(String userEmail, int gymClassId) {
+		int rowsAffected = jdbc.update("DELETE FROM user_gymclass WHERE user_email = ? AND gym_class_id = ?", userEmail, gymClassId);
+		return rowsAffected > 0;
+	}
+	public void decrementGymClassCapacityCurrent(int gymClassId) {
+		jdbc.update("UPDATE gym_classes SET current_capacity = current_capacity - 1 WHERE gym_class_id = ?", gymClassId);
+	}
 
 }

@@ -63,7 +63,30 @@ public class UserGymClassController {
 		return "/gym_classes/gym_classes_overview";
 	}
 
-	//public String removeUserFromSelectedClass(@RequestParam("gym_class_id")int gymClassId, HttpSession session) {
+	@PostMapping("/removeUserFromSelectedClass")
+	public String removeUserFromSelectedClass(@RequestParam("gym_class_id")int gymClassId, HttpSession session) {
+		User currentUser = (User) session.getAttribute("currentuser");
+		
+		if(!gymClassService.isGymClassWithIdExists(gymClassId)){
+			System.out.println("No existe una clase de gimnasio con ese id ");
+			return "/gym_classes/gym_classes_overview";
+		}
+		GymClass gymClass = gymClassService.getGymClass(gymClassId);
+		
+		if(!userGymClassService.userInGymClass(currentUser.getEmail(), gymClassId)) {
+			System.out.println("El usuario no esta apuntado en esta clase.");
+			return "/gym_classes/gym_classes_overview";
+		}
+		if(!userGymClassService.deleteUserGymClass(currentUser.getEmail(), gymClassId)) {
+			System.out.println("Error al eliminar una row de la tabla USER_GYMCLASS");
+			return "/gym_classes/gym_classes_overview";
+		}
+		
+		userGymClassService.decrementUserGymClass(gymClassId);
+		System.out.println("Se elimino correctamente al usuario de la clase del gimnasio");
+		System.out.println("Se decremento correctamente la capacidad actual de la clase del gimnasio con Id "+ gymClassId);
+		
+		return "/gym_classes/gym_classes_overview";
 
-	//}
+	}
 }
