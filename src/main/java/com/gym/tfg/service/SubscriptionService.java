@@ -8,6 +8,9 @@ import com.gym.tfg.model.User;
 import com.gym.tfg.model.subscription.Subscription;
 import com.gym.tfg.repository.MainRepository;
 
+/**
+ * Service class to handle operations related to subscription classes
+ */
 @Service
 public class SubscriptionService {
 

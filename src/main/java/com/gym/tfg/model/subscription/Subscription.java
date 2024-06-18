@@ -1,6 +1,7 @@
 package com.gym.tfg.model.subscription;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +11,9 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a subscription in the gym system.
+ */
 @Entity
 @Table(name="subscriptions")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

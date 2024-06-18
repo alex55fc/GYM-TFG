@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a gym class in the gym system.
+ */
 @Entity
 @Table(name="gym_classes")
 public class GymClass {

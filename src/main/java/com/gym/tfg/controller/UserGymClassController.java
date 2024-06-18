@@ -17,6 +17,9 @@ import com.gym.tfg.service.UserGymClassService;
 
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * UserGymClassController handles user interactions related to gym classes,
+ */
 @Controller
 public class UserGymClassController {
 
@@ -26,6 +29,9 @@ public class UserGymClassController {
 	@Autowired
 	GymClassService gymClassService;
 
+	/** 
+     * Displays the gym classes page with the list of classes the current user is enrolled in.
+	 */
 	@GetMapping("/gymClassesPage")
 	public String gymClassesPage(Model model, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
@@ -35,66 +41,81 @@ public class UserGymClassController {
 		return "gym_classes/gym_classes_overview";
 	}
 
+	/**
+	 * Allows the current user to join a selected gym class.
+	 * 
+	 * Checks if a gym class exists with the provided ID.
+     * Checks if the user has an active subscription.
+     * Checks if the user is already enrolled in the gym class.
+     * Checks if there is available space in the gym class.
+	 */
 	@PostMapping("/joinSelectedGymClass")
 	public String joinSelectedGymClass(@RequestParam("gym_class_id") int gymClassId, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
 
 		if (!gymClassService.isGymClassWithIdExists(gymClassId)) {
-			System.out.println("No existe una clase de gimnasio con ese id ");
+			System.out.println("No gym class exists with that ID");
 			return "redirect:/gymClassesPage";
 		}
 		GymClass gymClass = gymClassService.getGymClass(gymClassId);
 
 		if (currentUser.getSubscription() == null) {
-			System.out.println("Necesitas tener una subscripcion para apuntarte a nuevas clases!");
+			System.out.println("You need a subscription to join new classes!");
 			return "redirect:/gymClassesPage";
 		}
 
 		if (userGymClassService.userInGymClass(currentUser.getEmail(), gymClassId)) {
-			System.out.println("El usuario ya esta apuntado a esta clase ");
+			System.out.println("You are already enrolled in this class");
 			return "redirect:/gymClassesPage";
 		}
 
 		if (!gymClass.isGymClassSpaceAvaliable()) {
-			System.out.println("La clase esta llena");
+			System.out.println("The class is full");
 			return "redirect:/gymClassesPage";
 		}
 
 		userGymClassService.insertUserGymClass(currentUser.getEmail(), gymClassId);
 		gymClassService.incrementGymClassCapacityCurrent(gymClassId);
 
-		System.out.println("Se inserto correctamente una fila en USER_GYMCLASS\n" + "Usuario " + currentUser.getEmail()
-				+ " apuntado a clase con Id " + gymClassId);
-		System.out.println("Se actualizo la capacidad actual en la Tabla gym_classes con id " + gymClassId);
+		System.out.println("Successfully inserted a row into USER_GYMCLASS\\nUser " + currentUser.getEmail()
+				+ " enrolled in class with ID " + gymClassId);
+		System.out.println("Updated the current capacity in the gym_classes table with ID " + gymClassId);
 
 		session.setAttribute("currentuser", currentUser);
 
 		return "redirect:/gymClassesPage";
 	}
+	
+	/**
+     * Allows the current user to leave a selected gym class.
 
+	 * Checks if a gym class exists with the provided ID.
+     * Checks if the user is already enrolled in the gym class.
+     * Checks if there was an error deleting a row.
+	 */
 	@PostMapping("/removeUserFromSelectedClass")
 	public String removeUserFromSelectedClass(@RequestParam("gym_class_id") int gymClassId, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
 
 		if (!gymClassService.isGymClassWithIdExists(gymClassId)) {
-			System.out.println("No existe una clase de gimnasio con ese id ");
+			System.out.println("No gym class exists with that ID");
 			return "redirect:/gymClassesPage";
 		}
 		GymClass gymClass = gymClassService.getGymClass(gymClassId);
 
 		if (!userGymClassService.userInGymClass(currentUser.getEmail(), gymClassId)) {
-			System.out.println("El usuario no esta apuntado en esta clase.");
+			System.out.println("You are not enrolled in this class.");
 			return "redirect:/gymClassesPage";
 		}
 		if (!userGymClassService.deleteUserGymClass(currentUser.getEmail(), gymClassId)) {
-			System.out.println("Error al eliminar una row de la tabla USER_GYMCLASS");
+			System.out.println("Error deleting a row from the USER_GYMCLASS table");
 			return "redirect:/gymClassesPage";
 		}
 
 		userGymClassService.decrementUserGymClass(gymClassId);
-		System.out.println("Se elimino correctamente al usuario de la clase del gimnasio");
-		System.out.println(
-				"Se decremento correctamente la capacidad actual de la clase del gimnasio con Id " + gymClassId);
+		
+		System.out.println("Successfully removed the user from the gym class");
+		System.out.println("Successfully decremented the current capacity of the gym class with ID " + gymClassId);
 
 		session.setAttribute("currentuser", currentUser);
 

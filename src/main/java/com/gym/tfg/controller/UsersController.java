@@ -15,6 +15,9 @@ import com.gym.tfg.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * UsersController handles user-related operations such as managing subscriptions.
+ */
 @Controller
 public class UsersController {
 
@@ -24,6 +27,9 @@ public class UsersController {
 	@Autowired
 	UserService userService;
 
+	/**
+     * Redirects the user to the appropriate subscription page based on their current subscription.
+	 */
 	@GetMapping("/userSubscriptionPage") 
 	public String redirectUserSusbcriptionPage(HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
@@ -37,12 +43,15 @@ public class UsersController {
 		else if(currentUser.getSubscription().getSubscriptionName().equalsIgnoreCase("PremiumSubscription")) {
 			return "subscriptions/update_premium_subscription";
 		}
-		//no deberia darse este caso
 		else {
 			return "/home";
 		}
 	}
 
+	/**
+	 * Creates a new user subscription based on the provided subscription type.
+	 * @param subscriptionType The type of subscription to create
+	 */
 	@PostMapping("/createUserSusbcription")
 	public String createUserSusbcription(@RequestParam("subscriptionType") String subscriptionType, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
@@ -68,26 +77,24 @@ public class UsersController {
 		return "redirect:/home";
 	}
 
-	/*
-	 * obtenemos el objeto subscription asociado al currentUser 
-	 * creamos el una subscripcion Premium con el id de la subscription del currentUser
-	 * cambiamos el objeto subscription del user por el nuevo subscription premium
-	 * usar el método JDBC para actualizar la suscripción en la base de datos
-	 * con un metodo CRUD actualizamos el usurio en la db
-	 * actualizamos las sesion del currentUser
+	/**
+	 * Changes the current user's subscription to Premium.
 	 */
 	@PostMapping("/changeUserSubscriptionToPremium")
 	public String changeUserSubscriptionToPremium(@RequestParam("subscriptionType") String subscriptionType, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
 
 		if(currentUser != null && currentUser.getSubscription() != null) {
+			// Retrieve the subscription object associated with the currentUser.
 			Subscription sub = currentUser.getSubscription();
+			// Create a Premium subscription using the currentUser's subscription ID.
 			Subscription premiumSubscription = new PremiumSubscription(sub.getId());
 
 			currentUser.setSubscription(premiumSubscription);
 			subService.upgradeUserSubscriptionToPremium(currentUser);
 			userService.updateUser(currentUser);
-
+			
+			//Update the currentUser's session.
 			session.setAttribute("currentuser", currentUser);
 			System.out.println(currentUser.toString());
 			System.out.println(currentUser.getSubscription().toString());
@@ -96,26 +103,24 @@ public class UsersController {
 		return "redirect:/home";
 	}
 
-	/*
-	 * obtenemos el objeto subscription asociado al currentUser 
-	 * creamos el una subscripcion Basic con el id de la subscription del currentUser
-	 * cambiamos el objeto subscription del user por el nuevo subscription basic
-	 * usar el método JDBC para actualizar la suscripción en la base de datos
-	 * con un metodo CRUD actualizamos el usurio en la db
-	 * actualizamos la sesion del currentUser
+	/**
+	 * Changes the current user's subscription to Basic.
 	 */
 	@PostMapping("/changeUserSubscriptionToBasic")
 	public String changeUserSubscriptionToBasic(@RequestParam("subscriptionType") String subscriptionType, HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentuser");
 
 		if(currentUser != null && currentUser.getSubscription() != null) {
+			// Retrieve the subscription object associated with the currentUser.
 			Subscription sub = currentUser.getSubscription();
+			// Create a Basic subscription using the currentUser's subscription ID.
 			Subscription basicSubscription = new BasicSubscription(sub.getId());
 
 			currentUser.setSubscription(basicSubscription);
 			subService.downgradeUserSubscriptionToBasic(currentUser);
 			userService.updateUser(currentUser);
 
+			//Update the currentUser's session.
 			session.setAttribute("currentuser", currentUser);
 			System.out.println(currentUser.toString());
 			System.out.println(currentUser.getSubscription().toString());
@@ -124,12 +129,8 @@ public class UsersController {
 
 	}
 
-	/*
-	 * obtenemos el currentUser
-	 * en db establecemos null nuestro subscription del usuer 
-	 * 
-	 * hacecmos null la subscription del objeto 
-	 * actualizamos la session, devolvemos home 
+	/**
+     * Deletes the user's subscription.
 	 */
 	@PostMapping("/deleteUserSubscription")
 	public String deleteUserSubscription(HttpSession session) {
@@ -138,11 +139,11 @@ public class UsersController {
 		if(currentUser != null && currentUser.getSubscription() != null) {
 			if(userService.deleteUserSusbcription(currentUser)) {
 				
-				System.out.println("Se elimino la subscripcion del usuario ");
+				System.out.println("User's subscription deleted");
 				subService.deleteSubscriptionFromUser(currentUser);
 				
 				if(subService.findSubscription(currentUser)) {
-					System.out.println("Se elimino la subscripcion asociada al usuario ");
+					System.out.println("Subscription associated with the user deleted.");
 					
 					currentUser.setSubscription(null);					
 					session.setAttribute("currentuser", currentUser);
@@ -150,11 +151,11 @@ public class UsersController {
 					System.out.println(currentUser.toString());
 				}
 				else {
-					System.out.println("Error al eliminar la suscripcion asociada al usuario");
+					System.out.println("Error deleting the subscription associated with the user.");
 				}
 			}
 			else {
-				System.out.println("Error al eliminar la suscripcion del usuario");
+				System.out.println("Error deleting the user's subscription.");
 			}
 			
 		}

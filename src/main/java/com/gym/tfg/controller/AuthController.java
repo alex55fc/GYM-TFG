@@ -12,6 +12,9 @@ import com.gym.tfg.util.Constants;
 
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * AuthController handles user authentication and registration requests.
+ */
 @Controller
 public class AuthController {
 	
@@ -30,9 +33,13 @@ public class AuthController {
 		return "auth/register";
 	}
 	
+    /**
+     * Inserts a new user into the database after validating the information.
+     */
 	@PostMapping("/registerPage/insertUser")
 	public String insertUser(User userToInsert, HttpSession session, Model model) {
 		
+		// Verify email is valid
 		if(!emailIsValid(userToInsert.getEmail())) {
 			System.out.println(" 1. The email must not have leading or trailing whitespaces.\r\n"
 					+ " 2. The email must not contain spaces.\r\n");
@@ -49,7 +56,7 @@ public class AuthController {
 			model.addAttribute("userx", userToInsert); 
 			return "auth/register";
 		}
-		//Verify that the password is valid
+		// Verify that the password is valid
 		if(!passwordIsValid(userToInsert.getPassword())) {
 			System.out.println(" 1. The password must not have leading or trailing whitespace.\r\n"
 					+ " 2. The password must not contain spaces.\r\n"
@@ -72,11 +79,16 @@ public class AuthController {
 		return "main_pages/home";
 	}
 	
+	/**
+	 * Authenticates the user after validating information
+	 */
 	@PostMapping("/loginPage/loginUser")
 	public String loginUser(User userToLog, HttpSession session , Model model) {
 		
 		// Verify email exists
 		if(userService.isUserWithEmailExists(userToLog.getEmail())) {
+			
+			// Verify email and password match
 			if(userService.isPasswordMatchingEmail(userToLog)) {
 				
 				userToLog = userService.getUserFromDatabaseFromDB(userToLog.getEmail());
@@ -102,6 +114,9 @@ public class AuthController {
 		
 	}
 	
+	/**
+	 * Logs out the current user after invalidates the session and remove the user's information
+	 */
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 	    if (session != null) {
@@ -113,6 +128,12 @@ public class AuthController {
 	    return "redirect:/";
 
 	}
+	
+	/**
+	 * Validates an email based on the following criteria:
+	 * 1. The email must not have leading or trailing whitespace
+	 * 2. The email must not contain white spaces
+	 */
 	private boolean emailIsValid(String email) {
         if (!email.trim().equals(email)) {
             return false;
@@ -123,12 +144,20 @@ public class AuthController {
         }
         return true;
 	}
+	
+	/**
+	 * Convert user information into lower case
+	 */
 	private void userParamsToLowerCase(User user) {
 		user.setEmail(user.getEmail().toLowerCase());
 		user.setName(user.getName().toLowerCase());
 		user.setSurname(user.getSurname().toLowerCase());	
 		
 	}
+	
+	/**
+	 * Clean user extra white spaces
+	 */
     private void cleanUserSpaces(User user) {
     	
         String name = user.getName().trim();
@@ -143,14 +172,12 @@ public class AuthController {
         }
         user.setSurname(surname);
     }
+    
     /**
      * Validates a password based on the following criteria:
      * 1. The password must not have leading or trailing whitespace.
      * 2. The password must not contain spaces.
      * 3. The password must contain at least one uppercase letter.
-     *
-     * @param password the password to be validated
-     * @return true if the password meets all the criteria, false in otherwise
      */
     private boolean passwordIsValid(String password) {
         if (!password.trim().equals(password)) {

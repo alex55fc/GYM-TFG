@@ -3,6 +3,9 @@ package com.gym.tfg.model.subscription;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
+/**
+ * Represents a basic subscription in the gym system.
+ */
 @Entity
 @DiscriminatorValue("BASIC")
 public class BasicSubscription extends Subscription {
@@ -12,9 +15,12 @@ public class BasicSubscription extends Subscription {
 
 	public BasicSubscription() {
 		super("BasicSubscription", BASIC_MONTHLY_PRICE);
-		// TODO Auto-generated constructor stub
 	}
-	
+	/**
+	 * Constructs a BasicSubscription object with the specified ID.
+	 * This constructor is for special use, as it is intended to create a subscription
+	 * with a specific ID instead of using the auto-incremented ID.
+	 */
 	public BasicSubscription(int id) {
 		super("BasicSubscription", BASIC_MONTHLY_PRICE);
 		this.id = id;

@@ -10,6 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * Represents a user in the gym system.
+ */
 @Entity
 @Table(name="users")
 public class User {
@@ -34,7 +37,6 @@ public class User {
 		super();
 	}
 
-	//constructor con datos estrictamente necesarios
 	public User(String email, String password, String name, String surname, int age) {
 		super();
 		this.email = email;

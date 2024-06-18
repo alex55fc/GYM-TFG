@@ -5,6 +5,9 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+/**
+ * RowMapper implementation for mapping rows of a ResultSet to UserGymClassDto objects.
+ */
 public class UserGymClassDtoRowMapper implements RowMapper<UserGymClassDto>{
 
 	@Override

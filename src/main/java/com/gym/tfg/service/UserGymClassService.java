@@ -9,6 +9,9 @@ import com.gym.tfg.dao.GymClassDao;
 import com.gym.tfg.model.dto.UserGymClassDto;
 import com.gym.tfg.repository.MainRepository;
 
+/**
+ * Service class to handle operations related to user gym class enrollments.
+ */
 @Service
 public class UserGymClassService {
 	

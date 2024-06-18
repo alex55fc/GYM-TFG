@@ -7,6 +7,9 @@ import com.gym.tfg.dao.GymClassDao;
 import com.gym.tfg.model.gymclasses.GymClass;
 import com.gym.tfg.repository.MainRepository;
 
+/**
+ * Service class to handle perations related to gym classes
+ */
 @Service
 public class GymClassService {
 	

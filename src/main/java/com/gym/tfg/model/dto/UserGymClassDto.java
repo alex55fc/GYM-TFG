@@ -1,5 +1,8 @@
 package com.gym.tfg.model.dto;
 
+/**
+ * Data Transfer Object (DTO) representing a user's enrollment in a gym class.
+ */
 public class UserGymClassDto {
 	private String emailUser;
 	private int gymClassId;
