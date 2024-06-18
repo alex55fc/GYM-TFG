@@ -54,9 +54,9 @@ public class MainRepository {
 
 	}
 
-	public void insertIntoUserGymClass(String userEmail, int gymClassId) {
-		jdbc.update("INSERT INTO user_gymclass(user_email, gym_class_id) values (?, ?);",
-		userEmail, gymClassId);
+	public void insertIntoUserGymClass(String userEmail, int gymClassId, String gymNameClass, String classWeeklyDay) {
+		jdbc.update("INSERT INTO user_gymclass(user_email, gym_class_id, name_class, weekly_day) values (?, ?, ?,?);",
+		userEmail, gymClassId, gymNameClass, classWeeklyDay);
 	}	
 	
 	public boolean deleteUserGymClass(String userEmail, int gymClassId) {

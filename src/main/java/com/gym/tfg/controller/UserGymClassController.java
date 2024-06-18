@@ -73,8 +73,8 @@ public class UserGymClassController {
 			System.out.println("The class is full");
 			return "redirect:/gymClassesPage";
 		}
-
-		userGymClassService.insertUserGymClass(currentUser.getEmail(), gymClassId);
+		GymClass selectedGymClass = gymClassService.getGymClass(gymClassId);
+		userGymClassService.insertUserGymClass(currentUser.getEmail(), selectedGymClass.getId(), selectedGymClass.getGymClassName(), selectedGymClass.getWeeklyDay());
 		gymClassService.incrementGymClassCapacityCurrent(gymClassId);
 
 		System.out.println("Successfully inserted a row into USER_GYMCLASS\\nUser " + currentUser.getEmail()

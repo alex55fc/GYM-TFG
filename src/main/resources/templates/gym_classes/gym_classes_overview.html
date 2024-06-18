@@ -17,12 +17,16 @@
                 <tr>
                     <th>Email User</th>
                     <th>Gym Class ID</th>
+                    <th>Name Class</th>
+                    <th>Day of the week</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="userGymClass : ${listUserGymClass}">
                     <td th:text="${userGymClass.emailUser}"></td>
                     <td th:text="${userGymClass.gymClassId}"></td>
+                    <td th:text="${userGymClass.gymClassName}"></td>
+                    <td th:text="${userGymClass.gymClassWeeklyDay}"></td>
                 </tr>
             </tbody>
         </table>

@@ -26,8 +26,8 @@ public class UserGymClassService {
 		return repository.isUserEnrolledInGymClass(userEmail, gymClassId);
 	}
 	
-	public void insertUserGymClass(String userEmail, int gymClassId) {
-		repository.insertIntoUserGymClass(userEmail, gymClassId);
+	public void insertUserGymClass(String userEmail, int gymClassId, String gymNameClass, String classWeeklyDay ) {
+		repository.insertIntoUserGymClass(userEmail, gymClassId, gymNameClass, classWeeklyDay);
 	}
 	
 	public boolean deleteUserGymClass(String userEmail, int gymClassId) {

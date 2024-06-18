@@ -16,14 +16,14 @@ INSERT INTO gym_classes (gym_class_id, name_class, current_capacity, total_capac
 -- Assign users to existing gym classes
 
 -- User 1 (user1@gmail.com) enrolled in Yoga (gym_class_id = 1)
-INSERT INTO user_gymclass (user_email, gym_class_id) VALUES ('user1@gmail.com', 1);
+INSERT INTO user_gymclass (user_email, gym_class_id,name_class, weekly_day) VALUES ('user1@gmail.com', 1, 'Yoga', 'Monday');
 
--- User 1 (user1@gmail.com) enrolled in Spinning (gym_class_id = 4)
-INSERT INTO user_gymclass (user_email, gym_class_id) VALUES ('user1@gmail.com', 2);
+-- User 1 (user1@gmail.com) enrolled in Pilates (gym_class_id = 2)
+INSERT INTO user_gymclass (user_email, gym_class_id,name_class, weekly_day) VALUES ('user1@gmail.com', 2, 'Pilates', 'Tuesday');
 
 -- User 2 (user2@gmail.com) enrolled in Pilates (gym_class_id = 2)
-INSERT INTO user_gymclass (user_email, gym_class_id) VALUES ('user2@gmail.com', 2);
+INSERT INTO user_gymclass (user_email, gym_class_id,name_class, weekly_day) VALUES ('user2@gmail.com', 2, 'Pilates', 'Tuesday');
 
 -- User 2 (user2@gmail.com) enrolled in BodyPump (gym_class_id = 3)
-INSERT INTO user_gymclass (user_email, gym_class_id) VALUES ('user2@gmail.com', 3);
+INSERT INTO user_gymclass (user_email, gym_class_id,name_class, weekly_day) VALUES ('user2@gmail.com', 3, 'BodyPump', 'Thursday');
 

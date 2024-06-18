@@ -15,6 +15,8 @@ public class UserGymClassDtoRowMapper implements RowMapper<UserGymClassDto>{
 		UserGymClassDto dto = new UserGymClassDto();
 		dto.setEmailUser(rs.getString("user_email"));
 		dto.setGymClassId(rs.getInt("gym_class_id"));
+		dto.setGymClassName(rs.getString("name_class"));
+		dto.setGymClassWeeklyDay(rs.getString("weekly_day"));
 		return dto;
 	}
 

@@ -6,16 +6,41 @@ package com.gym.tfg.model.dto;
 public class UserGymClassDto {
 	private String emailUser;
 	private int gymClassId;
-	
+	private String gymClassName;
+	private String gymClassWeeklyDay;
 	
 	public UserGymClassDto() {
 		super();
 	}
-	public UserGymClassDto(String emailUser, int gymClassId) {
+
+
+	public UserGymClassDto(String emailUser, int gymClassId, String gymClassName, String gymClassWeeklyDay) {
 		super();
 		this.emailUser = emailUser;
 		this.gymClassId = gymClassId;
+		this.gymClassName = gymClassName;
+		this.gymClassWeeklyDay = gymClassWeeklyDay;
 	}
+
+
+	public String getGymClassWeeklyDay() {
+		return gymClassWeeklyDay;
+	}
+
+
+	public void setGymClassWeeklyDay(String gymClassWeeklyDay) {
+		this.gymClassWeeklyDay = gymClassWeeklyDay;
+	}
+
+
+	public String getGymClassName() {
+		return gymClassName;
+	}
+
+	public void setGymClassName(String gymClassName) {
+		this.gymClassName = gymClassName;
+	}
+
 	public String getEmailUser() {
 		return emailUser;
 	}
