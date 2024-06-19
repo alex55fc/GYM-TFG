@@ -5,99 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym Classes</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
-    <link rel="stylesheet" th:href="@{/css/update_subscription.css}">
+    <link rel="stylesheet" th:href="@{/css/gym_classes_overview.css}">
 </head>
 <body>
 	<header>
-	        <nav>
-	            <div class="nav-logo">
-	            	<a th:href="@{/home}">
-	                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
-	           		</a>
-	            </div>
-	            <div class="nav-buttons-html">
-               		<form th:action="@{/userSubscriptionPage}">
-						<input type="submit" value="Your subscription" class="nav-button-html"/>
-					</form>
-			   		<form th:action="@{/gymClassesPage}">
-						<input type="submit" value="Gym Classes" class="nav-button-html"/>
-					</form>
-	            </div>
-	            <div class="nav-buttons">
-			   		<form th:action="@{/logout}">
-						<input type="submit" value="Log out" class="nav-button"/>
-					</form>	                
-	            </div>
-	        </nav>
-	    </header>
-	<h1>My gym classes</h1>
-	
-    <div th:if="${#lists.isEmpty(listUserGymClass)}">
-        <p>The user has no assigned gym classes.</p>
-    </div>
+        <nav>
+            <div class="nav-logo">
+            	<a th:href="@{/home}">
+                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+           		</a>
+            </div>
+            <div class="nav-buttons-html">
+              		<form th:action="@{/userSubscriptionPage}">
+					<input type="submit" value="Your subscription" class="nav-button-html"/>
+				</form>
+		   		<form th:action="@{/gymClassesPage}">
+					<input type="submit" value="Gym Classes" class="nav-button-html"/>
+				</form>
+            </div>
+            <div class="nav-buttons">
+		   		<form th:action="@{/logout}">
+					<input type="submit" value="Log out" class="nav-button"/>
+				</form>	                
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>Clases del Gimnasio</h1>
+        
+        <div th:if="${#lists.isEmpty(listUserGymClass)}">
+            <p>El usuario no tiene clases de gimnasio asignadas.</p>
+        </div>
 
-    <div th:unless="${#lists.isEmpty(listUserGymClass)}">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Email User</th>
-                    <th>Gym Class ID</th>
-                    <th>Name Class</th>
-                    <th>Day of the week</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="userGymClass : ${listUserGymClass}">
-                    <td th:text="${userGymClass.emailUser}"></td>
-                    <td th:text="${userGymClass.gymClassId}"></td>
-                    <td th:text="${userGymClass.gymClassName}"></td>
-                    <td th:text="${userGymClass.gymClassWeeklyDay}"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-	<div>
-    	<form th:action="@{/joinSelectedGymClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="1"/>
-	        <input type="submit" value="Join Yoga"/>
-		</form>
-	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="1"/>
-	        <input type="submit" value="Out of Yoga"/>
-	    </form>
-	</div>
-	
-	<div>
-	    <form th:action="@{/joinSelectedGymClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="2"/>
-	        <input type="submit" value="Join Pilates"/>
-	    </form>
-	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="2"/>
-	        <input type="submit" value="Out of Pilates"/>
-	    </form>
-	</div>
-	
-	<div>
-	    <form th:action="@{/joinSelectedGymClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="3"/>
-	        <input type="submit" value="Join BodyPump"/>
-	    </form>
-	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="3"/>
-	        <input type="submit" value="Out of BodyPump"/>
-	    </form>
-	</div>
-	<div>
-	    <form th:action="@{/joinSelectedGymClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="4"/>
-	        <input type="submit" value="Join Spinning"/>
-	    </form>
-   	    <form th:action="@{/removeUserFromSelectedClass}" method="post">
-	        <input type="hidden" name="gym_class_id" value="4"/>
-	        <input type="submit" value="Out of Spinning"/>
-	    </form>
-	</div>
+        <div th:unless="${#lists.isEmpty(listUserGymClass)}" class="card-container">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Email Usuario</th>
+                        <th>ID Clase</th>
+                        <th>Nombre de la Clase</th>
+                        <th>Día de la Semana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="userGymClass : ${listUserGymClass}">
+                        <td th:text="${userGymClass.emailUser}"></td>
+                        <td th:text="${userGymClass.gymClassId}"></td>
+                        <td th:text="${userGymClass.gymClassName}"></td>
+                        <td th:text="${userGymClass.gymClassWeeklyDay}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-container">
+            <div class="card">
+                <h2>Yoga</h2>
+                <form th:action="@{/joinSelectedGymClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="1"/>
+                    <input type="submit" value="Unirse a Yoga"/>
+                </form>
+                <form th:action="@{/removeUserFromSelectedClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="1"/>
+                    <input type="submit" value="Salir de Yoga"/>
+                </form>
+            </div>
+            <div class="card">
+                <h2>Pilates</h2>
+                <form th:action="@{/joinSelectedGymClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="2"/>
+                    <input type="submit" value="Unirse a Pilates"/>
+                </form>
+                <form th:action="@{/removeUserFromSelectedClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="2"/>
+                    <input type="submit" value="Salir de Pilates"/>
+                </form>
+            </div>
+            <div class="card">
+                <h2>BodyPump</h2>
+                <form th:action="@{/joinSelectedGymClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="3"/>
+                    <input type="submit" value="Unirse a BodyPump"/>
+                </form>
+                <form th:action="@{/removeUserFromSelectedClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="3"/>
+                    <input type="submit" value="Salir de BodyPump"/>
+                </form>
+            </div>
+            <div class="card">
+                <h2>Spinning</h2>
+                <form th:action="@{/joinSelectedGymClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="4"/>
+                    <input type="submit" value="Unirse a Spinning"/>
+                </form>
+                <form th:action="@{/removeUserFromSelectedClass}" method="post">
+                    <input type="hidden" name="gym_class_id" value="4"/>
+                    <input type="submit" value="Salir de Spinning"/>
+                </form>
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>
