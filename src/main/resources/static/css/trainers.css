@@ -1,0 +1,27 @@
+.trainers {
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 15px;
+}

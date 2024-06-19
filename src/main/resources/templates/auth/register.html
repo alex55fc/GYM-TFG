@@ -1,32 +1,57 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Sign up</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
+</head>
+    <header>
+        <nav>
+            <div class="nav-logo">
+            	<a th:href="@{/}">
+                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+           		</a>
+            </div>
+            <div class="nav-buttons">
+                <form th:action="@{/loginPage}">
+                    <input type="submit" value="Log in" class="nav-button"/>
+                </form>
+            </div>
+        </nav>
+    </header>
 	<body>
-		<form th:action="@{/registerPage/insertUser}" th:object="${userx}" method=post>
-			<span>Email</span>
-			<input type="text" th:field="*{email}" required/><br>
-			<span>Password</span>
-			<input type="password" th:field="*{password}" required/><br>
-			<span>Name</span>
-			<input type="text" th:field="*{name}" required/><br>
-			<span>Surname</span>
-			<input type="text" th:field="*{surname}" required/><br>
-			<span>Age</span>
-			<input type="number" th:field="*{age}" required/><br>
-			<span>Weight</span>
-			<input type="number" th:field="*{weight}" step="0.01"/><br>
-			<span>Gender</span>
-			<select th:field="*{gender}">
-			    <option value="OTHER">Other</option>
-			    <option value="MALE">Male</option>
-			    <option value="FEMALE">Female</option>
-			</select><br>
-			
-			<input type="submit" value="Register now!"/>
-		</form>
+	 	<main>
+	        <form th:action="@{/registerPage/insertUser}" th:object="${userx}" method="post" class="register-form">
+	            <label for="email">Email</label>
+	            <input type="text" id="email" th:field="*{email}" required/>
+	
+	            <label for="password">Password</label>
+	            <input type="password" id="password" th:field="*{password}" required/>
+	
+	            <label for="name">Name</label>
+	            <input type="text" id="name" th:field="*{name}" required/>
+	
+	            <label for="surname">Surname</label>
+	            <input type="text" id="surname" th:field="*{surname}" required/>
+	
+	            <label for="age">Age</label>
+	            <input type="number" id="age" th:field="*{age}" required/>
+	
+	            <label for="weight">Weight</label>
+	            <input type="number" id="weight" th:field="*{weight}" step="0.01"/>
+	
+	            <label for="gender">Gender</label>
+	            <select id="gender" th:field="*{gender}">
+	                <option value="OTHER">Other</option>
+	                <option value="MALE">Male</option>
+	                <option value="FEMALE">Female</option>
+	            </select>
+	
+	            <input type="submit" value="Register now!"/>
+	        </form>
+   	 	</main>
 	</body>
 </html>

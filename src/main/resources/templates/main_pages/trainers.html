@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our trainers</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/trainers.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-logo">
+            	<a th:href="@{/}">
+                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+           		</a>
+            </div>
+            <div class="nav-buttons-html">
+            	<form th:action="@{/trainers}">
+                    <input type="submit" value="Our trainers" class="nav-button-html"/>
+                </form>
+            	<form th:action="@{/gymClassesView}">
+                    <input type="submit" value="Gym Classes" class="nav-button-html"/>
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <form th:action="@{/loginPage}">
+                    <input type="submit" value="Log in" class="nav-button"/>
+                </form>
+                <form th:action="@{/registerPage}">
+                    <input type="submit" value="Sign up" class="nav-button"/>
+                </form>
+            </div>
+        </nav>
+    </header>
+   		<section class="trainers">
+            <h2>Nuestros Entrenadores</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img th:src="@{/images/personal_trainer_1.jpg}" class="card-img-top" alt="Trainer 1">
+                    <div class="card-body">
+                        <h3><strong>Entrenador 1</strong></h3>
+                        <p>Descripción breve del entrenador 1.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img th:src="@{/images/personal_trainer_2.jpg}" class="card-img-top" alt="Trainer 2">
+                    <div class="card-body">
+                        <h3><strong>Entrenador 2</strong></h3>
+                        <p>Descripción breve del entrenador 2.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img th:src="@{/images/personal_trainer_3.jpg}" class="card-img-top" alt="Trainer 3">
+                    <div class="card-body">
+                        <h3><strong>Entrenador 3</strong></h3>
+                        <p>Descripción breve del entrenador 3.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>

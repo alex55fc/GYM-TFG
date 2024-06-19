@@ -1,22 +1,71 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Index</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
-	<body>
-	<h1>Index page </h1>
-	<form th:action="@{/loginPage}">
-		<input type="submit" value="Log in"/>
-	</form>
-	<form th:action="@{/registerPage}">
-		<input type="submit" value="Sign up"/>
-	</form>
-	
-	<h3>Borrar este formulario cuando terminen las pruebas</h3>	
-	<form th:action="@{/home}">
-		<input type="submit" value="Go home"/>
-	</form>
-	</body>
+<body>
+    <header>
+        <nav>
+            <div class="nav-logo">
+            	<a th:href="@{/}">
+                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+           		</a>
+            </div>
+            <div class="nav-buttons-html">
+            	<form th:action="@{/trainers}">
+                    <input type="submit" value="Our trainers" class="nav-button-html"/>
+                </form>
+            	<form th:action="@{/gymClassesView}">
+                    <input type="submit" value="Gym Classes" class="nav-button-html"/>
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <form th:action="@{/loginPage}">
+                    <input type="submit" value="Log in" class="nav-button"/>
+                </form>
+                <form th:action="@{/registerPage}">
+                    <input type="submit" value="Sign up" class="nav-button"/>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+            <h2>Bienvenido a Nuestro Gimnasio</h2>
+            <h3>Tu salud es nuestra prioridad</h3>
+            <p>Aquí puedes colocar la información que desees sobre el gimnasio.</p>
+
+        <section class="video-section">
+            <div class="video-text">
+                <h3>Entrena al lado de los mejores porefesinales en el sector</h3>
+                <p>Aquí puedes escribir sobre el contenido del video y cualquier otra información relevante.</p>
+            </div>
+            <video width="700" height="auto" controls class="trainer-video">
+                <source th:src="@{/videos/personal_trainer_video.mp4}" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
+        </section>
+
+
+
+        <section class="gallery">
+            <h2>Nuestro Espacio</h2>
+            <p>Aquí puedes escribir más información sobre las instalaciones y otros aspectos del gimnasio.</p>
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img th:src="@{/images/gym_view.jpg}" alt="Gym view 1">
+                    <p>Descripción de la imagen 1</p>
+                </div>
+                <div class="gallery-item">
+                    <img th:src="@{/images/gym_view_2.jpg}" alt="Gym view 2">
+                    <p>Descripción de la imagen 1</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
 </html>

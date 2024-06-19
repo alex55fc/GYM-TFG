@@ -1,0 +1,31 @@
+.video-section {
+    display: flex;
+    align-items: center;
+}
+
+.video-text {
+    padding-right: 20px;
+}
+
+.trainer-video {
+	
+    border: none;
+    margin: 20px;
+    padding: 0;
+}
+
+.gallery {
+    text-align: center;
+}
+
+.image-gallery {
+    display: flex;
+    justify-content: center;
+}
+.gallery-item img {
+    max-width: 80%;
+    height: auto;
+    border: 2px solid #555;
+}
+
+

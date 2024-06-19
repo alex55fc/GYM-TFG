@@ -1,0 +1,47 @@
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.register-form,
+.login-form {
+    background-color: #444; 
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.register-form label ,
+.login-form label{
+    display: block;
+    margin-bottom: 8px;
+    color: #ffd64f;
+}
+
+.register-form input, .register-form select,
+.login-form input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+}
+.register-form input, .register-form select,
+.login-form input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+}
+.register-form input[type="submit"],
+.login-form input[type="submit"] {
+    background-color: #e6aa46; 
+    cursor: pointer;
+    color: black;
+}

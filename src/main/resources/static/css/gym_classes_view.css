@@ -1,0 +1,22 @@
+.gym-class {
+    margin-bottom: 40px;
+}
+
+.gym-class-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.gym-class-img {
+    width: 40%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.gym-class-text {
+    padding: 20px;
+}
+
+

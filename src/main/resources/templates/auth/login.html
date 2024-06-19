@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Index</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+</head>
+    <header>
+        <nav>
+            <div class="nav-logo">
+            	<a th:href="@{/}">
+                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+           		</a>
+            </div>
+            <div class="nav-buttons">
+                <form th:action="@{/registerPage}">
+                    <input type="submit" value="Sign up" class="nav-button"/>
+                </form>
+            </div>
+        </nav>
+    </header>
 </head>
 	<body>
-	<h1>Login page</h1>
-		<form th:action="@{/loginPage/loginUser}" th:object="${userx}" method=post>
-			<span>Email</span>
-			<input type="text" th:field="*{email}" required/><br>
-			<span>Password</span>
-			<input type="password" th:field="*{password}" required/><br>
-			<input type="submit" value="Login"/>
-		</form>
+	 	<main>
+	        <form th:action="@{/loginPage/loginUser}" th:object="${userx}" method="post" class="login-form">
+	            <label for="email">Email</label>
+	            <input type="text" id="email" th:field="*{email}" required/>
+	
+	            <label for="password">Password</label>
+	            <input type="password" id="password" th:field="*{password}" required/>
+	
+	            <input type="submit" value="Login"/>
+	        </form>
+	    </main>
 	</body>
 </html>

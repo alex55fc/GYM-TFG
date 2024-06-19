@@ -12,13 +12,10 @@ import jakarta.servlet.http.HttpSession;
 public class MainController {
 	
 	/**
-	 * Displays the index page and invalidates the session if it exists.
+	 * Displays the index page.
 	 */
 	@GetMapping("/")
-	public String indexPage(HttpSession session ) {
-		if(session != null) {
-			session.invalidate();
-		}
+	public String indexPage() {
 		return "index";
 	}
 	
@@ -28,6 +25,22 @@ public class MainController {
     @GetMapping("/home")
     public String home() {
         return "main_pages/home";
+    }
+    
+    /**
+     * Redirect to the trainers page
+     */
+    @GetMapping("/trainers")
+    public String trainers() {
+    	return "main_pages/trainers";
+    }
+    
+    /**
+     * Redirect to the trainers page
+     */
+    @GetMapping("/gymClassesView")
+    public String gymClassesView() {
+    	return "main_pages/gym_classes_view";
     }
     
 }
