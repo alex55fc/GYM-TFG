@@ -1,36 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Subscripton update</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription update</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/update_subscription.css}">
 </head>
 <body>
-	<h1>Update your actual subscription</h1>
-    <p>Your actual subscription is :<span th:text="${session.currentuser.subscription.subscriptionName}"></span></p>
-    
-    <h2>Basic Subscription</h2>
-    <ul>
-        <li>Access to all facilities during all operating hours.</li>
-        <li>Access to all classes offered by the gym.</li>
-        <li>Lower price compared to premium subscription.</li>
-    </ul>
-
-    <h2>Premium Subscription</h2>
-    <ul>
-        <li>Priority access to classes, making it easier to book popular classes.</li>
-        <li>Includes sessions with professional trainers, providing personalized training and guidance.</li>
-        <li>Higher price compared to basic subscription, but justifies cost for those valuing personalized attention.</li>
-    </ul>
-     
-    <!-- Form to confirm subscription change -->
-    <form th:action="@{/changeUserSubscriptionToPremium}" method="post" onsubmit="return confirm('Are you sure you want to change to Premium Subscription?');">
-        <input type="hidden" name="subscriptionType" value="PremiumSubscription"/>
-        <input type="submit" value="Change to Premium Subscription"/>
-    </form>
-    
-     <!-- Form to delte subscription -->
-    <form th:action="@{/deleteUserSubscription}" method="post" onsubmit="return confirm('Are you sure you want to finish your subscription?');">
-        <input type="submit" value="Finish my subscription"/>
-    </form>
+	<header>
+	        <nav>
+	            <div class="nav-logo">
+	            	<a th:href="@{/home}">
+	                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+	           		</a>
+	            </div>
+	            <div class="nav-buttons-html">
+               		<form th:action="@{/userSubscriptionPage}">
+						<input type="submit" value="Your subscription" class="nav-button-html"/>
+					</form>
+			   		<form th:action="@{/gymClassesPage}">
+						<input type="submit" value="Gym Classes" class="nav-button-html"/>
+					</form>
+	            </div>
+	            <div class="nav-buttons">
+			   		<form th:action="@{/logout}">
+						<input type="submit" value="Log out" class="nav-button"/>
+					</form>	                
+	            </div>
+	        </nav>
+	    </header>
+	    
+		<main>
+	        <h1>Actualizar su suscripción actual</h1>
+	        <p>Su suscripción actual es: <span th:text="${session.currentuser.subscription.subscriptionName}"></span></p>
+	        
+	        <h2>Suscripción Básica</h2>
+	        <ul>
+	            <li>Acceso a todas las instalaciones durante todas las horas de operación.</li>
+	            <li>Acceso a todas las clases ofrecidas por el gimnasio.</li>
+	            <li>Precio más bajo comparado con la suscripción premium.</li>
+	        </ul>
+	
+	        <h2>Suscripción Premium</h2>
+	        <ul>
+	            <li>Acceso prioritario a las clases, facilitando la reserva de clases populares.</li>
+	            <li>Incluye sesiones con entrenadores profesionales, proporcionando entrenamiento y orientación personalizados.</li>
+	            <li>Precio más alto comparado con la suscripción básica, pero justificado para aquellos que valoran la atención personalizada.</li>
+	        </ul>
+	
+	        <form th:action="@{/changeUserSubscriptionToPremium}" method="post" onsubmit="return confirm('¿Está seguro de que desea cambiar a la Suscripción Premium?');">
+	            <input type="hidden" name="subscriptionType" value="PremiumSubscription"/>
+	            <input type="submit" value="Cambiar a Suscripción Premium" class="button-form"/>
+	        </form>
+	
+	        <form th:action="@{/deleteUserSubscription}" method="post" onsubmit="return confirm('¿Está seguro de que desea finalizar su suscripción?');">
+	            <input type="submit" value="Finalizar mi suscripción" class="button-form"/>
+	        </form>
+    	</main>
 </body>
 </html>

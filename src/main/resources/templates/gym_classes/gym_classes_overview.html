@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Gym classes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Classes</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/update_subscription.css}">
 </head>
 <body>
-	<h1>This is the gym classes</h1>
+	<header>
+	        <nav>
+	            <div class="nav-logo">
+	            	<a th:href="@{/home}">
+	                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+	           		</a>
+	            </div>
+	            <div class="nav-buttons-html">
+               		<form th:action="@{/userSubscriptionPage}">
+						<input type="submit" value="Your subscription" class="nav-button-html"/>
+					</form>
+			   		<form th:action="@{/gymClassesPage}">
+						<input type="submit" value="Gym Classes" class="nav-button-html"/>
+					</form>
+	            </div>
+	            <div class="nav-buttons">
+			   		<form th:action="@{/logout}">
+						<input type="submit" value="Log out" class="nav-button"/>
+					</form>	                
+	            </div>
+	        </nav>
+	    </header>
+	<h1>My gym classes</h1>
 	
     <div th:if="${#lists.isEmpty(listUserGymClass)}">
         <p>The user has no assigned gym classes.</p>
@@ -74,12 +99,5 @@
 	    </form>
 	</div>
 
-   	<form th:action="@{/home}">
-		<input type="submit" value="Go home"/>
-	</form>
-
-    
-
-    
 </body>
 </html>

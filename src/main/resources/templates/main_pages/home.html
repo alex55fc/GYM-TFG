@@ -1,27 +1,70 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Home</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
+
 	<body>
-	    <h1>Home</h1>
-	    <p>Welcome, <span th:text="${session.currentuser.name}"></span>!</p>
-	    <p>Email: <span th:text="${session.currentuser.email}"></span></p>
-	    
-   		<form th:action="@{/userSubscriptionPage}">
-			<input type="submit" value="Your subscription"/>
-		</form>
-		
-		<!--  -->
-   		<form th:action="@{/gymClassesPage}">
-			<input type="submit" value="Gym classes"/>
-		</form>
-		
-		<!-- Log out to Index -->
-   		<form th:action="@{/logout}">
-			<input type="submit" value="Log out"/>
-		</form>
+	    <header>
+	        <nav>
+	            <div class="nav-logo">
+	            	<a th:href="@{/home}">
+	                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+	           		</a>
+	            </div>
+	            <div class="nav-buttons-html">
+               		<form th:action="@{/userSubscriptionPage}">
+						<input type="submit" value="Your subscription" class="nav-button-html"/>
+					</form>
+			   		<form th:action="@{/gymClassesPage}">
+						<input type="submit" value="Gym Classes" class="nav-button-html"/>
+					</form>
+	            </div>
+	            <div class="nav-buttons">
+			   		<form th:action="@{/logout}">
+						<input type="submit" value="Log out" class="nav-button"/>
+					</form>	                
+	            </div>
+	        </nav>
+	    </header>
+    	<main>
+	        <section class="welcome-section">
+	            <h1>Home</h1>
+	            <p>Bienvenid@, <span th:text="${session.currentuser.name}"></span> <span th:text="${session.currentuser.surname}"></span>!</p>
+	            <h2>Disfruta de tu gimnasio</h2>
+	            <p>Tienes acceso a:</p>
+	        </section>
+	        
+	        <section class="feature-section">
+	            <div class="feature">
+	                <img th:src="@{/images/gym_locker.jpg}" alt="Gym Locker" class="feature-image">
+	                <div class="feature-text">
+	                    <h3>Lockers para dejar tus cosas</h3>
+	                    <p>Nuestros lockers están disponibles para que dejes tus pertenencias. Recuerda traer tu propio candado.</p>
+	                </div>
+	            </div>
+	            <div class="feature">
+	                <div class="feature-text">
+	                    <h3>Zona de peso libre</h3>
+	                    <p>En nuestra zona de peso libre, encontrarás una gran variedad de mancuernas y barras para todos tus ejercicios de fuerza.</p>
+	                </div>
+	                <img th:src="@{/images/dumbbells.jpg}" alt="Dumbbells" class="feature-image">
+	            </div>
+	            <div class="feature">
+	                <video width="600" height="auto" controls class="feature-video">
+	                    <source th:src="@{/videos/treadmill.mp4}" type="video/mp4">
+	                    Tu navegador no soporta la etiqueta de video.
+	                </video>
+	                <div class="feature-text">
+	                    <h3>Zona de cardio</h3>
+	                    <p>En nuestra zona de cardio, encontrarás cintas para correr, bicicletas y más para mejorar tu resistencia.</p>
+	                </div>
+	            </div>
+	        </section>
+    	</main>
 	</body>
 </html>

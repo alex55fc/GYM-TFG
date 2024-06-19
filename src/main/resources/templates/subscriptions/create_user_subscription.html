@@ -1,26 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyneleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Update your subscription</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update your subscription</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/forms.css}">
 </head>
+
 <body>
-	    <h1>Update your subscription</h1>
-	    <p>Welcome, <span th:text="${session.currentuser.name}"></span>!</p>
-	    <p>Email: <span th:text="${session.currentuser.email}"></span></p>
-	    
-	    <div>
-           No tienes una sus cripción.
-           
-         		<form th:action="@{/createUserSusbcription}" method=post>
-				<select name="subscriptionType">
-				    <option value="BasicSubscription">Basic subscription</option>
-				    <option value="PremiumSubscription">Premium subscription</option>
-				</select><br>
-			
-				<input type="submit" value="New Subscription!"/>
-			</form>
-      </div>
+    	<header>
+	        <nav>
+	            <div class="nav-logo">
+	            	<a th:href="@{/home}">
+	                	<img th:src="@{/images/gym_logo.png}" alt="Gym Logo" class="logo">
+	           		</a>
+	            </div>
+	            <div class="nav-buttons-html">
+               		<form th:action="@{/userSubscriptionPage}">
+						<input type="submit" value="Your subscription" class="nav-button-html"/>
+					</form>
+			   		<form th:action="@{/gymClassesPage}">
+						<input type="submit" value="Gym Classes" class="nav-button-html"/>
+					</form>
+	            </div>
+	            <div class="nav-buttons">
+			   		<form th:action="@{/logout}">
+						<input type="submit" value="Log out" class="nav-button"/>
+					</form>	                
+	            </div>
+	        </nav>
+	    </header>
+      	<main>
+	        <div class="subscription-form">
+	            <h2>Update your subscription</h2>
+	            <p>No tienes una suscripción.</p>
+	            <form th:action="@{/createUserSusbcription}" method="post">
+	                <label for="subscriptionType">Tipo de suscripción</label>
+	                <select name="subscriptionType" id="subscriptionType">
+	                    <option value="BasicSubscription">Basic subscription</option>
+	                    <option value="PremiumSubscription">Premium subscription</option>
+	                </select>
+	                <input type="submit" value="New Subscription!"/>
+	            </form>
+	        </div>
+    	</main>
       	    
 </body>
 </html>

@@ -7,7 +7,8 @@ main {
 }
 
 .register-form,
-.login-form {
+.login-form,
+.subscription-form {
     background-color: #444; 
     padding: 20px;
     width: 100%;
@@ -15,23 +16,17 @@ main {
 }
 
 .register-form label ,
-.login-form label{
+.login-form label,
+.subscription-form label{
     display: block;
     margin-bottom: 8px;
     color: #ffd64f;
 }
 
+
 .register-form input, .register-form select,
-.login-form input {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    background-color: #555;
-    color: #fff;
-}
-.register-form input, .register-form select,
-.login-form input {
+.login-form input ,
+.subscription-form input,.subscription-form select {
     width: 95%;
     padding: 10px;
     margin-bottom: 15px;
@@ -40,7 +35,8 @@ main {
     color: #fff;
 }
 .register-form input[type="submit"],
-.login-form input[type="submit"] {
+.login-form input[type="submit"],
+.subscription-form input[type="submit"] {
     background-color: #e6aa46; 
     cursor: pointer;
     color: black;
